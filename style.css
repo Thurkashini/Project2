@@ -1,0 +1,165 @@
+body {
+	/* background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;*/
+    background-size: cover;
+	background-image:url("images3.jpg");
+	/*background-color:#191970;*/
+	font-family: "Times New Roman", Times, serif;}
+
+/* Full-width input fields 
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 10px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+*/
+	/*height: 90%;
+}
+ Set a style for all buttons 
+ */
+button {
+	padding-left: 6px;
+	margin: auto;
+	background-color: #778899;
+	color: white;
+	padding: 8px 30px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	
+	border-radius: 10px;
+}	
+
+.button {
+	padding-left: 6px;
+	margin: auto;
+	background-color: #778899;
+	color: white;
+	padding: 8px 30px;
+	border: none;
+	cursor: pointer;
+	width: 90%;
+	
+	border-radius: 10px;
+}	
+
+.carousel img {
+    max-height: 450px;
+    margin: 0 auto;
+}
+.carousel-inner{
+    height: 400px;
+}
+
+
+
+button:hover {
+	opacity: 0.7;
+}
+
+.lgcontainer {
+	border-radius: 10%;
+	background-color:#696969;
+	align-content:center;
+	padding-top: 40px;
+	padding-right: 2px;
+	padding-bottom: 30px;
+	padding-left: 98px;
+	max-width: 350px;
+	height: 200px;
+	text-align:center;
+	align:center;
+	margin-left: 35%;
+    margin-right:15%;
+	margin-top: 1%;
+    margin-bottom:15%;
+}
+/*
+input {
+	
+	width: 100%;
+}
+*/
+.b{
+	border-radius: 10%;
+	background-color:#696969;
+	height: 310px;
+}
+.regcontainer {
+	border-radius: 10%;
+	background-color:#696969;
+	align-content:center;
+	padding-top: 40px;
+	padding-right: 70px;
+	padding-bottom: 250px;
+	padding-left: 160px;
+	max-width: 350px;
+	height: 200px;
+	text-align:center;
+	align:center;
+	margin-left: 30%;
+    margin-right:15%;
+	margin-top: 5%;
+    margin-bottom:15%;
+}
+
+.center {
+	border-radius: 50%;
+	display:block;
+	margin-left: 46%;
+	margin-right: 45%;
+	margin-top: 10%;
+	margin-bottom: 2%;
+	width: 8%;
+	height: 14%;
+}
+
+.centered { text-align: center; }
+
+.row{
+	margin-top:40px;
+	padding: 0 10px;
+}
+.clickable{
+	cursor: pointer;   
+}
+
+.panel-heading div {
+	margin-top: -18px;
+	font-size: 15px;
+}
+.panel-heading div span{
+	margin-left:5px;
+}
+.panel-body{
+		display:none;
+}	
+
+
+    
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+}
+
+*[role="form"] h2 { 
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.table {
+    width: 50%;
+    margin: 0 auto !important;
+}	
