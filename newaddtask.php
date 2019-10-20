@@ -4,10 +4,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
 
+ <script type="text/javascript"> 
+
+        $(function() {
+            $( "#assigner" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "fetch.php",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function( data ) {
+							console.log(data);
+                            response( data );
+                        }
+                    });
+                },
+            });
+        });    
+
+		$(function() {
+					$( "#developer" ).autocomplete({
+						source: function( request, response ) {
+							$.ajax({
+								url: "fetch2.php",
+								dataType: "json",
+								data: {
+									term: request.term
+								},
+								success: function( data ) {
+									console.log(data);
+									response( data );
+								}
+							});
+						},
+					});
+				});     		
+ </script>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
         <a class="navbar-brand" href="adminhome.php">Task Management System</a>
@@ -40,7 +80,7 @@
               <!--  <h2 style="text-align:center;">Task Assigning Form</h2>-->
                 <div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Name</label>
+                    <label for="Task Name" class="col-md-6 col-md-push-5 control-label">Task Name</label>
                     <div class="col-md-6 col-md-push-5">
                         <input type="text" class="form-control" id="tname" placeholder="Task Name" class="form-control" name="tname" required>
                     </div>
@@ -48,7 +88,7 @@
 				
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Description</label>
+                    <label for="Task Description" class="col-md-6 col-md-push-5 control-label">Task Description</label>
                     <div class="col-md-6 col-md-push-5">
                         <input type="text" class="form-control" id="tdes" placeholder="Task Description" class="form-control" name="tdes" required>
                     </div>
@@ -56,9 +96,9 @@
 				
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Assigner</label>
+                    <label for="asssigner" class="col-md-6 col-md-push-5 control-label">Task Assigner</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="text" class="form-control" id="assigner" name="assigner" autocomplete="off" placeholder="Task Assigner" class="form-control input-lg"  required>
+                        <input type="text" id="assigner" class="form-control"  name="assigner" autocomplete="off" placeholder="Task Assigner" class="form-control input-lg"  required>
                     </div> 
 				</div>	
 					<div id="result1">
@@ -67,7 +107,7 @@
 		
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Developer</label>
+                    <label for="Task Developer" class="col-md-6 col-md-push-5 control-label">Task Developer</label>
                     <div class="col-md-6 col-md-push-5">
                         <input type="text" class="form-control" id="developer" name="developer" autocomplete="off" placeholder="Task Developer" class="form-control input-lg" required>
                     </div>
@@ -83,61 +123,12 @@
 		</form> <!-- /form -->
 </div>   <!-- ./container -->
       
-	<script>
-       // start jQuery function to load the content of all functions after the page is loaded completely
-     //   $(document).ready(function(){
-            //jQuery function to get the keys entered by keyboard
-         //   $('#assigner').typehead({   
-               // source:function(query,result){
-					//var assigner = document.getElementById("assigner").value;
-					//var cname="<?php print($name);?>";
-				
-                    //$.ajax({
-                        //Path for PHP file to fetch suggestion from DB
-                      //  url: "fetch.php", 
-                        //Fetching method       
-                      //  method: "POST",
-                        //Data send to the server to get the results
-                      //  data: {
-                       //    name : cname,             
-                     //      assigner.query1: query1 
-                      //  },
-                
-                        //Type of data sent to the server
-                     //   dataType: "json",
-						//success:function(data){
-						//	result($.map(data,function(item){
-						//		return item;
-                //    }));
-				//		}
-				//	})
-               // }
-          //  });
-			//$('#developer').typeahead({
-				//	source: function(query1, result){
-				//	var developer = document.getElementById("developer").value;
-					//call php variable into javascript by using php print method
-				//	var cname = "<?php print($name); ?>";
-				//	$.ajax({
-				//	url:"fetch.php",
-				//	method:"POST",
-				//	data:{name:cname:developer.query1:query1},
-				//	dataType:"json",
-				//	success:function(data){
-				//	result($.map(data, function(item){
-				//	return item;
-			//		}));
-			//		}
-			//		})
-			//		}
-			//		});
-
-			
-		//	});
+	
+      
 			
 			
 
-    </script>
+    
  <?php
 	
  
@@ -149,8 +140,8 @@
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$TName = $_POST['tname'];
 				$TDes = $_POST['tdes'];
-				//$Assigner = $_POST['assigner'];
-				//$Developer = $_POST['developer'];
+				$Assigner = $_POST['asssigner'];
+				$Developer = $_POST['developer'];
 			
 				$servername = "localhost";
 				$username = "root";
@@ -165,25 +156,19 @@
 					die( "Connection failed: ". mysqli_connect_error());
 				}
 
-				$request1 = mysqli_real_escape_string($conn, $_POST["assigner"]);
-				$assigner = mysqli_real_escape_string($conn, $_POST["assigner"]);
-					
-				$request2 = mysqli_real_escape_string($conn, $_POST["developer"]);
-				$developer = mysqli_real_escape_string($conn, $_POST["developer"]);
 				
-				$sql="INSERT INTO task (tName,description,asssigner,developer)VALUES('$TName','$TDes',
-				'(select id ,name from user where role = 'user' AND name LIKE '{$request1}%)',
-				'(select id ,name from user where role = 'admin' AND name LIKE '{$request2}%)'";
+				
+				$sql="INSERT INTO task (tName,description,asssigner,developer)VALUES('$TName','$TDes','$Assigner','$Developer')";
 				
 				$res = mysqli_query($conn,$sql);
-				//$count = mysqli_num_rows($res);
+				//$count = mysqli_num_rows($conn,$sql);
 				
 				if(mysqli_query($conn,$sql)){
 					echo"New record created successfully";
 					//header ('location: adminhome.php'); 
 					//exit;
 				}else{
-					echo"Error:".$sql." ".mysqli_error($conn);
+				echo"Error:".$sql." ".mysqli_error($conn);
 				}
 					mysqli_close($conn);
 			}

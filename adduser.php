@@ -10,68 +10,62 @@ if(isset ($_SESSION['id'])){?>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+
 
 <script>
-			function checkemail()
-					{
-					 var email=document.getElementById( "email" ).value;
-						
-					 if(email)
-					 {
-					  $.ajax({
-					  type: 'post',
-					  url: 'ajax.php',
-					  data: {
-					   user_email:email,
-					  },
-					  success: function (response) {
-					   $( '#email' ).html(response);
-					   if(response=="OK")	
-					   {
-						return true;	
-					   }
-					   else
-					   {
-						return false;	
-					   }
-					  }
-					  });
-					 }
-					 else
-					 {
-					  $( '#email' ).html("");
-					  return false;
-					 }
-					}
-				</script>
+			function checkemail(){
+					 var email=$("#email").val();// value in field email
+$.ajax({
+    type:'post',
+        url:'ajax.php',// put your real file name 
+        data:{email: email},
+        success:function(msg){
+        alert(msg); // your message will come here.     
+        }
+ });
+			}
+					
+					
+</script>
 
 </head>
 
 
 
 <script>
-	 window.onload = function check(form) {
-		password1 = form.psw.value;
-			password2 = form.cfpsw.value;
+
+
+//function checkmatch(){
+	//var password = $("#psw").val();
+	//var conformpassword = $("#cfpsw").val();
+	
+	//if(password!==conformpassword){
+	//	$("#divcheckmail").html("passwords do not match");
+	//}
+	//else{
+	//	$("#divcheckmail").html("passwords match");
+	//}
+	
+//}
+	// window.onload = function check(form) {
+	//	password1 = form.psw.value;
+		//	password2 = form.cfpsw.value;
 			
-		if (password1!=password2) {
-				alert("\npassword is not match please try again")
-				return (false);
+		//if (password1!=password2) {
+		//		alert("\npassword is not match please try again")
+		//		return (false);
 				
-			} else {
+		//	} else {
 				
-			return (true);
-				}
-			}
+		//	return (true);
+		//		}
+		//	}
 			
 			
 	</script>  
 </head>
 
-<?php
-session_start();
-$_SESSION['id'] = '1';?>
+
 <body onload='document.reg.psw.focus()'>
 
 
@@ -83,13 +77,13 @@ $_SESSION['id'] = '1';?>
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul class="nav navbar-nav">
-			 <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li>
+			 <!-- <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li> -->
                 <li class="nav-item"><a href="adduser.php" class="nav-link">Add User</a></li>
-                <li class="nav-item"><a href="userdelete.php" class="nav-link">Delete User</a></li>
+               <li class="nav-item"><a href="userdelete.php" class="nav-link">User Details</a></li>
                 
-                <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li>
+               <!-- <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li> -->
                 <li class="nav-item"><a href="addtask.php" class="nav-link">Add Task</a></li>
-                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Delete Task</a></li>
+                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Task Details</a></li>
                 
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
@@ -120,7 +114,7 @@ $_SESSION['id'] = '1';?>
 				<div class="form-group row">
                     <label for="email" class="col-md-6 col-md-push-5 control-label">Email</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="email" class="form-control" id="email" placeholder="Email" class="form-control" name= "email" required>
+                        <input type="email" class="form-control" id="email" onblur="checkemail();" placeholder="Email" class="form-control" name= "email" required>
                     </div>
 				</div>
 				
@@ -130,7 +124,7 @@ $_SESSION['id'] = '1';?>
 							<div class="row">
 								<div class="col-md-6">
 									<label class="radio-inline">
-										<input type="radio" name="gender" class="form-control" id="female" onkeyup="checkemail();" value="female" required>Female
+										<input type="radio" name="gender" class="form-control" id="female"  value="female" required>Female
 									</label>
 								</div>
 									
@@ -181,12 +175,13 @@ $_SESSION['id'] = '1';?>
 			  <div class="form-group row">
                     <label for="Confirm Password" class="col-md-6 col-md-push-5 control-label">Confirm Password</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input title="Please enter the same Password as above" type="password" class="form-control" id="cfpsw" placeholder="Confirm Password" class="form-control" name="cfpsw"  required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="pwd2" 
+                        <input title="Please enter the same Password as above" type="password" onblur="checkmatch();" class="form-control" id="cfpsw" placeholder="Confirm Password" class="form-control" name="cfpsw"  required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="pwd2" 
 						onchange="this.setCustomValidit(this.validity.patternMismatch ? this.title : '');">  
   
                     </div><!-- pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" -->
                </div>
-                
+                <div class="registrationFormAlert" id="divCheckPasswordMatch">
+</div>
 				
 				<div class="form-group row">
                     <label for="status" class="col-md-6 col-md-push-5 control-label">Status </label>
@@ -209,7 +204,18 @@ $_SESSION['id'] = '1';?>
 				</div>
 			</form> <!-- /form -->
       </div>   <!-- ./container -->
-				
+		
+<script type="text/javascript">
+    function checkmatch() {
+        var password = document.getElementById("psw").value;
+        var confirmPassword = document.getElementById("cfpsw").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>		
 	  
 	  </body>
 	  </html>

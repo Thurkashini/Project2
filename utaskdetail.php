@@ -1,5 +1,8 @@
 <?php session_start();
 if(isset ($_SESSION['id'])){
+if($_SESSION['id']) {
+$id = $_SESSION['id'];
+}
 	?>
 
 <!DOCUMENT>
@@ -28,8 +31,8 @@ if(isset ($_SESSION['id'])){
                 <li class="nav-item"><a href="ataskdetail.php.php" class="nav-link">Task Details</a></li>
                 <li class="nav-item"><a href="addtask.php" class="nav-link">Add Task</a></li>
                 <li class="nav-item"><a href="taskdelete.php" class="nav-link">Delete Task</a></li>
-                
-            </ul> -->
+               --> 
+            </ul> 
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 
                 
@@ -59,9 +62,16 @@ if(isset ($_SESSION['id'])){
 				}
 				
 				$taskId = isset($_GET['taskId']) ? $_GET['taskId'] : '';
-			$result = mysqli_query($conn, "SELECT * FROM task ");	
-				
-?>
+			//$result = mysqli_query($conn, "SELECT * FROM task ");	
+			$result = mysqli_query($conn, "SELECT * FROM task WHERE developer=(SELECT name FROM user WHERE id='$id')");		
+
+			if (!$result) {
+    printf("Error: %s\n", mysqli_error($conn));
+    exit();
+	
+	
+}
+			?><?php //?>
 
 <div style="text-align:center"><h1 style="padding-top:100px">Task Management Details</h1></div>
 <div class="row">

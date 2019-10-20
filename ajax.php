@@ -19,22 +19,24 @@
 						//echo "Connected successfully";
 
 
-				if(isset($_POST['email']))
-						{
+						
+						
+				
 						 $email=$_POST['email'];
 
 						 $checkdata=" SELECT email FROM user WHERE email='$email' ";
 
-						 $query=mysql_query($checkdata);
+						 $query=mysqli_query($conn,$checkdata);
 
-						 if(mysql_num_rows($query)>0)
-						 {
-						  echo "Email Already Exist";
-						 }
-						 else
-						 {
-						  echo "OK";
-						 }
-						 exit();
-						}
+						 if(mysqli_num_rows($query)>0)
+						 //{
+						  echo 'Email Already Exit';
+						  exit();
+						 //}
+						 //else{
+						 // echo 'Ok Your Email Validate';
+						 // exit();
+						// }
+							 
+						
 						?>

@@ -8,6 +8,49 @@ if(isset ($_SESSION['id'])){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+   a
+
+<script type="text/javascript"> 
+
+        $(function() {
+            $( "#assigner" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "fetch.php",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function( data ) {
+							console.log(data);
+                            response( data );
+                        }
+                    });
+                },
+            });
+        });    
+
+		$(function() {
+					$( "#developer" ).autocomplete({
+						source: function( request, response ) {
+							$.ajax({
+								url: "fetch2.php",
+								dataType: "json",
+								data: {
+									term: request.term
+								},
+								success: function( data ) {
+									console.log(data);
+									response( data );
+								}
+							});
+						},
+					});
+				});     		
+ </script>
 
 </head>
 <body>
@@ -20,13 +63,13 @@ if(isset ($_SESSION['id'])){
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul class="nav navbar-nav">
-			 <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li>
+			 <!-- <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li> -->
                 <li class="nav-item"><a href="adduser.php" class="nav-link">Add User</a></li>
-                <li class="nav-item"><a href="userdelete.php" class="nav-link">Delete User</a></li>
+               <li class="nav-item"><a href="userdelete.php" class="nav-link">User Details</a></li>
                 
-                <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li>
+               <!-- <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li> -->
                 <li class="nav-item"><a href="addtask.php" class="nav-link">Add Task</a></li>
-                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Delete Task</a></li>
+                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Task Details</a></li>
                 
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
@@ -44,33 +87,33 @@ if(isset ($_SESSION['id'])){
               <!--  <h2 style="text-align:center;">Task Assigning Form</h2>-->
                 <div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Name</label>
+                    <label for="tname" class="col-md-6 col-md-push-5 control-label">Task Name</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="text" class="form-control" id="name" placeholder="Name" class="form-control" name="tname" required>
+                        <input type="text" class="form-control" id="tname" placeholder="Task Name" class="form-control" name="tname" required>
                     </div>
 				</div>
 				
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Description</label>
+                    <label for="tdes" class="col-md-6 col-md-push-5 control-label">Task Description</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="text" class="form-control" id="name" placeholder="Name" class="form-control" name="tdes" required>
+                        <input type="text" class="form-control" id="tdes" placeholder="Task Description" class="form-control" name="tdes" required>
                     </div>
 				</div>
 				
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Assigner</label>
+                    <label for="assigner" class="col-md-6 col-md-push-5 control-label">Task Assigner</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="text" class="form-control" id="name" placeholder="Name" class="form-control" name="assigner" required>
+                        <input type="text" class="form-control" id="assigner" placeholder="Task Assigner" class="form-control" name="assigner" required>
                     </div>
 				</div>
 				
 				<div class="form-group row">
 					
-                    <label for="firstName" class="col-md-6 col-md-push-5 control-label">Task Developer</label>
+                    <label for="developer" class="col-md-6 col-md-push-5 control-label">Task Developer</label>
                     <div class="col-md-6 col-md-push-5">
-                        <input type="text" class="form-control" id="name" placeholder="Name" class="form-control" name="developer" required>
+                        <input type="text" class="form-control" id="developer" placeholder="Task Developer" class="form-control" name="developer" required>
                     </div>
 				</div>
   
@@ -108,9 +151,10 @@ if(isset ($_SESSION['id'])){
 				$sql="INSERT INTO task (tName,description,asssigner,developer)VALUES('$TName','$TDes','$Assigner','$Developer')";
 				
 				if(mysqli_query($conn,$sql)){
-					echo"New record created successfully";
-					header ('location: adminhome.php'); 
+					//echo"New record created successfully";
+					//header ('location: adminhome.php'); 
 					//exit;
+					?> <script> location.replace("adminhome.php"); </script><?php
 				}else{
 					echo"Error:".$sql." ".mysqli_error($conn);
 				}

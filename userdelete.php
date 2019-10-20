@@ -17,13 +17,13 @@
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul class="nav navbar-nav">
-			    <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li>
+			 <!-- <li class="nav-item"><a href="userdet.php" class="nav-link">User Details</a></li> -->
                 <li class="nav-item"><a href="adduser.php" class="nav-link">Add User</a></li>
-                <li class="nav-item"><a href="userdelete.php" class="nav-link">Delete User</a></li>
+               <li class="nav-item"><a href="userdelete.php" class="nav-link">User Details</a></li>
                 
-                <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li>
+               <!-- <li class="nav-item"><a href="taskdet.php" class="nav-link">Task Details</a></li> -->
                 <li class="nav-item"><a href="addtask.php" class="nav-link">Add Task</a></li>
-                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Delete Task</a></li>
+                <li class="nav-item"><a href="taskdelete.php" class="nav-link">Task Details</a></li>
                 
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
